@@ -3,7 +3,6 @@
 <html>
 <head>
   <title>OpenCastr</title>
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="A simple and open web based podcast player.">
   <meta name="author" content="CJ Trowbridge">
@@ -17,16 +16,33 @@
   
   <script>
     
-    var userObject = false;
-    var jqxhr = $.get("api/", function(data){
-      //TODO add check to make sure this came through correctly.
-      window.userObject = data;
-      console.log(data);
-    })
-    .fail(function(){
-      //TODO 
-      alert("error");
-    });
+     function onGoogleSignIn(googleUser){
+      // Useful data for your client-side scripts:
+      var profile = googleUser.getBasicProfile();
+      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail());
+
+      // The ID token you need to pass to your backend:
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+      
+      
+      var userObject = false;
+      var jqxhr = $.get("api/?auth=google&token="+id_token, function(data){
+        //TODO add check to make sure this came through correctly.
+        window.userObject = data;
+        console.log(data);
+      })
+      .fail(function(){
+        //TODO 
+        alert("error");
+      });
+      
+    }
     
   </script>
 
@@ -36,17 +52,13 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="https://opencastr.pw">OpenCastr</a>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <div class="nav-link g-signin2" data-onsuccess="onSignIn"></div>
-        </li>
-      </ul>
     </nav>
 
     <div class="row">
       <div class="col-12">
         <h1>OpenCastr</h1>
         <p>A free and open source web-based podcast player.</p>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
       </div>
     </div>
     
