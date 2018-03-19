@@ -18,6 +18,7 @@
     
      function onGoogleSignIn(googleUser){
       // Useful data for your client-side scripts:
+      /*
       var profile = googleUser.getBasicProfile();
       console.log("ID: " + profile.getId()); // Don't send this directly to your server!
       console.log('Full Name: ' + profile.getName());
@@ -29,17 +30,22 @@
       // The ID token you need to pass to your backend:
       var id_token = googleUser.getAuthResponse().id_token;
       console.log("ID Token: " + id_token);
+      */
       
-      
-      var userObject = false;
-      var jqxhr = $.get("api/?auth=google&token="+id_token, function(data){
-        //TODO add check to make sure this came through correctly.
-        window.userObject = data;
-        console.log(data);
-      })
-      .fail(function(){
-        //TODO 
-        alert("error");
+      $.ajax({
+        type: 'POST',
+        url: 'api/?auth=google',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        contentType: 'application/octet-stream; charset=utf-8',
+        success: function(result) {
+          // Handle or verify the server response.
+          
+          
+        },
+        processData: false,
+        data: googleUser['code']
       });
       
     }
