@@ -5,6 +5,7 @@ function Auth(){
     isset($_GET['auth'])&&
     $_GET['auth']=='google'
   ){
-    echo PHP_EOL.'Google Token: '.$_GET['token'].PHP_EOL;
+    echo PHP_EOL.'Google Token: '.PHP_EOL;
+    var_dump($_REQUEST);
   }
 }
