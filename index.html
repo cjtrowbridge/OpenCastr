@@ -44,6 +44,11 @@
       
     }
     
+    function SignOut(){
+      //GoogleAuth = gapi.auth2.getAuthInstance();
+      GoogleAuth.signOut();
+    }
+    
   </script>
 
 </head>
@@ -52,13 +57,23 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="https://opencastr.pw">OpenCastr</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <div class="nav-link g-signin2" data-onsuccess="onGoogleSignIn"></div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-link" onclick="SignOut();">Sign Out</div>
+        </li>
+      </ul>
+      
+      
     </nav>
 
     <div class="row">
       <div class="col-12">
         <h1>OpenCastr</h1>
         <p>A free and open source web-based podcast player.</p>
-        <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
+        
       </div>
     </div>
     
