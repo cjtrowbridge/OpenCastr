@@ -13,6 +13,8 @@ if(!file_exists('Config.php')){
 }
 include('Config.php');
 
-header("Content-Type: application/json; charset=UTF-8");
-$File = file_get_contents('userObject.json');
-die($File);
+
+if(isset($_GET['auth'])){
+  include('Auth.php');
+  Auth();
+}
