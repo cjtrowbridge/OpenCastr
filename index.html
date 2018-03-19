@@ -37,6 +37,9 @@
       $.ajax({
         type: 'POST',
         url: 'api/?auth=google',
+        {
+          'authToken': googleUser['authToken']
+        }
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
         },
@@ -45,9 +48,8 @@
           // Handle or verify the server response.
           console.log(result);
           
-        },
-        processData: false,
-        data: googleUser
+        }
+        
       });
       
     }
