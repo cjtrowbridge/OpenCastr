@@ -15,10 +15,6 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   
   <style>
-    .g-sign-in,
-    .g-sign-out{
-      text-align: right;
-    }
     .g-sign-out{
       display: none;
     }
@@ -73,11 +69,11 @@
     </nav>
 
     <div class="row">
-      <div class="col-xs-12">
-        <div class="g-sign-in">
+      <div class="col-12">
+        <div class="g-sign-in float-right">
           <p><div class="g-signin2" data-onsuccess="onGoogleSignIn"></div></p>
         </div>
-        <div class="g-sign-out">
+        <div class="g-sign-out float-right">
           <p><div class="nav-link" onclick="SignOut();">Sign Out</div></p>
         </div>
       </div>
