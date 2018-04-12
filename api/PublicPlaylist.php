@@ -34,7 +34,3 @@ if(filemtime('PublicPlaylist.json') < time()-60*5){
 
 header('Content-Type: application/json');
 die($Output);
-
-function getPodcastsByURL($URL){
-  
-}
