@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if(filemtime('PublicPlaylist.json') < time()-60*5){
   $Output = array(
     'Categories' => array(
