@@ -38,7 +38,15 @@
   
   <script>
     
-     function onGoogleSignIn(googleUser){
+    var PublicPlaylist = false;
+    var UserPlaylist   = false;
+    
+    $.get( "api/PublicPlaylist.php")
+    .done(function( data ) {
+      window.PublicPlaylist = data;
+    });
+    
+    function onGoogleSignIn(googleUser){
       // Useful data for your client-side scripts:
       /*
       var profile = googleUser.getBasicProfile();
