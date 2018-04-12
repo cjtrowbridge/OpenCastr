@@ -14,6 +14,12 @@
   <meta name="google-signin-client_id" content="1060384476129-3t3np307cij4q8cehm4d4f62v7o7mgvf.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   
+  <style>
+    .g-sign-out{
+      display: none;
+    }
+  </style>
+  
   <script>
     
      function onGoogleSignIn(googleUser){
@@ -28,6 +34,10 @@
       console.log("Email: " + profile.getEmail());
 
       */
+       
+      $('.g-sign-in').hide();
+      $('.g-sign-out').show();
+       
       var id_token = googleUser.getAuthResponse().id_token;
       console.log("ID Token: " + id_token);
       
@@ -41,6 +51,9 @@
     }
     
     function SignOut(){
+      $('.g-sign-in').show();
+      $('.g-sign-out').hide();
+      
       GoogleAuth = gapi.auth2.getAuthInstance();
       GoogleAuth.signOut();
     }
@@ -54,10 +67,10 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="https://opencastr.pw">OpenCastr</a>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li class="nav-item g-sign-in">
           <div class="nav-link g-signin2" data-onsuccess="onGoogleSignIn"></div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item g-sign-out">
           <div class="nav-link" onclick="SignOut();">Sign Out</div>
         </li>
       </ul>
