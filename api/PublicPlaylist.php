@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 if(filemtime('PublicPlaylist.json') < time()-60*5){
   $Output = array(
     'Categories' => array(
@@ -21,7 +17,7 @@ if(filemtime('PublicPlaylist.json') < time()-60*5){
         'Economist'             => './api/?feed=economist',
         'NPR: Planet Money'     => './api/?feed=planet-money',
         'Stuff You Should Know' => './api/?feed=stuff-you-should-know',
-        '9% Invisible'          => './api/?feed=99-invisible'
+        '9% Invisible'          => './api/?feed=99-invisible',
         'Star Talk'             => './api/?feed=star-talk'
       )
     )
