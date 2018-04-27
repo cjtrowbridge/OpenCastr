@@ -65,9 +65,13 @@
 
       var li = $("<li></li>");        
       var a  = $("<a></a>");
-      a.attr("href", "#").text(name);
+      a.addClass("nav-link");
+      a.attr("href", "#"+nameHash).text(name);
+      a.attr("role", "tab");
+      a.attr("data-toggle", "tab");
       li.append(a);
-
+      
+      $("#playlistsNav").append(li);
 
     }
     
@@ -128,7 +132,7 @@
     <div class="row">
       <div class="col-12 col-md-8">
 
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" id="playlistsNav">
           <li class="nav-item">
             <a class="nav-link active" href="#news" role="tab" data-toggle="tab">News</a>
           </li>
