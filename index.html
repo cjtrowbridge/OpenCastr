@@ -152,7 +152,7 @@
 
         var queueButton = $("<a></a>");
         queueButton.text('Queue Up');
-        queueButton.attr("a", 'javascript:void(0);');
+        queueButton.attr("href", 'javascript:QueueUp("#'+episodeHash+'");');
         queueButton.click( QueueUp(episodeHash) );
         
         var podcastContainer = $("<div></div>");
