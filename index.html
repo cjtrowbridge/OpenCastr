@@ -89,7 +89,6 @@
       
       BuildCategoryAddNavButton(name,nameHash);
       BuildCategoryAddPlaylistBody(name,nameHash,playlist);
-      //StartFetchingPodcastContent();
       $("#"+nameHash).tab();
 
     }
@@ -216,16 +215,16 @@
              $player+=' autoplay';
           }
           $player+='><source src="'+$url+'" type="audio/mp3"></audio>';
-          $(podcastContainer).find(".player").html($player);
+          podcastContainer.find(".player").html($player);
           if(feed=='/?feed=npr'){
             $('audio:first-of-type')[0].play();
           }
-          $(podcastContainer).find("audio").on('ended', function(){
-           var $dead = $('.podcastContainer:first-of-type');
+          podcastContainer.find("audio").on('ended', function(){
+           var $dead = $('#currentqueue .podcastContainer:first-of-type');
            $.when($dead.fadeOut(400))
            .done(function() {
             $dead.remove();
-            $('audio:first-of-type')[0].play();
+            $('#currentqueue audio:first-of-type')[0].play();
            });
          });
         });
