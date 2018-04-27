@@ -59,7 +59,7 @@
     function BuildCategory(name,playlist){
       $("#playlistNav").add("li").addClass("nav-item");
 
-      var out = sjcl.hash.sha256.hash("The quick brown fox jumps over the lazy dog");
+      var out = sjcl.hash.sha256.hash(name);
       var nameHash = sjcl.codec.hex.fromBits(out);
       
       BuildCategoryAddNavButton(name,nameHash);
