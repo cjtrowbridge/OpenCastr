@@ -44,6 +44,8 @@
     $.get( "api/PublicPlaylist.php")
     .done(function( data ) {
       window.PublicPlaylist = data;
+      console.log('Public Playlist');
+      console.log(data);
     });
     
     function onGoogleSignIn(googleUser){
