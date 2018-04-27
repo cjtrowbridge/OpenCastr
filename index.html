@@ -49,6 +49,28 @@
       console.log(data);
     });
     
+    function BuildPlaylists(data){
+      $.each(data['Categories'], function(key,value) {
+        BuildCategory(key,value);
+      });
+    }
+
+    function BuildCategory(name,playlist){
+      $("#playlistNav").add("li").addClass("nav-item");
+
+      var out = sjcl.hash.sha256.hash("The quick brown fox jumps over the lazy dog");
+      var nameHash = sjcl.codec.hex.fromBits(out);
+      
+      alert(name+" "+nameHash);
+
+      var li = $("<li></li>");        
+      var a  = $("<a></a>");
+      a.attr("href", "#").text(name);
+      li.append(a);
+
+
+    }
+    
     function onGoogleSignIn(googleUser){
       // Useful data for your client-side scripts:
       /*
