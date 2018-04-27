@@ -131,9 +131,10 @@
         
         var podcastContainer = $("<div></div>");
         podcastContainer.addClass("podcastContainer");
-        podcastContainer.attr("data-feed", value);
+        podcastContainer.attr("data-feed", value['Feed']);
         
         var image      = $("<img />");
+        image.attr("src", value['Image']);
         
         var title      = $("<h4></h4>");
         title.text(key);
