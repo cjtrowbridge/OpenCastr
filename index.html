@@ -195,6 +195,7 @@
       episode.appendTo("#currentQueue");
       
       var newObject = $('#'+nameHash);
+      newObject.find('.queueContainer').remove();
       
       var summary = newObject.find('.summary');
       summary.attr("title", summary.text());
@@ -207,7 +208,6 @@
     function StartFetchingPodcastContent(podcastContainer){
       //$(".podcastContainer").each(function(){
         //var podcastContainer = $(this);
-        podcastContainer.css('background-color','pink');
         var feed = podcastContainer.data('feed');
         $.get(feed, function(data){
           var $url = $(data).find("enclosure:first-of-type").attr('url');
