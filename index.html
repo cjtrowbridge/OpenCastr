@@ -47,6 +47,7 @@
       window.PublicPlaylist = data;
       console.log('Public Playlist');
       console.log(data);
+      BuildPlaylists(data);
     });
     
     function BuildPlaylists(data){
@@ -61,18 +62,48 @@
       var out = sjcl.hash.sha256.hash("The quick brown fox jumps over the lazy dog");
       var nameHash = sjcl.codec.hex.fromBits(out);
       
-      alert(name+" "+nameHash);
+      BuildCategoryAddNavButton(name,nameHash);
+      BuildCategoryAddPlaylistBody(name,nameHash);
 
-      var li = $("<li></li>");        
+    }
+    
+    function BuildCategoryAddNavButton(name,nameHash){
+      var li = $("<li></li>");
       var a  = $("<a></a>");
       a.addClass("nav-link");
       a.attr("href", "#"+nameHash).text(name);
       a.attr("role", "tab");
       a.attr("data-toggle", "tab");
       li.append(a);
-      
       $("#playlistsNav").append(li);
-
+    }
+    
+    function BuildCategoryAddPlaylistBody(name,nameHash){
+      /*
+          <div role="tabpanel" class="tab-pane fade in show active" id="news">
+            <div class="playlistContainer">
+              <h2>News</h2>
+            </div>
+          </div>
+      */
+      
+      var outsideDiv = $("<div></div>");
+      var insideDiv  = $("<div></div>");
+      var title      = $("<h2></h2>");
+      var contentDiv = $("<div></div>");
+      
+      outsideDiv.addClass("tab-pane fade");
+      outsideDiv.attr("id", nameHash);
+      outsideDiv.attr("role", "tab-panel");
+      
+      insideDiv.addClass("playlistWrapper");
+      
+      title.text(name);
+      
+      insideDiv.append(title);
+      insideDiv.append(contentDiv);
+      outsideDiv.append(insideDiv);
+      $("#playlists").append(outsideDiv);
     }
     
     function onGoogleSignIn(googleUser){
@@ -145,7 +176,7 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content">
+        <div class="tab-content" id="playlists">
           <div role="tabpanel" class="tab-pane fade in show active" id="news">
             <div class="playlistContainer">
               <h2>News</h2>
