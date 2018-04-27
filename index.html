@@ -71,6 +71,7 @@
     function BuildCategoryAddNavButton(name,nameHash){
       var li = $("<li></li>");
       var a  = $("<a></a>");
+      li.addClass("nav-item");
       a.addClass("nav-link");
       a.attr("href", "#"+nameHash).text(name);
       a.attr("role", "tab");
