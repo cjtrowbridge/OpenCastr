@@ -47,7 +47,7 @@
       width: 4em;
       height: 4em;
     }
-    .queueButton{
+    .queueContainer{
       float: right;
     }
     .podcastContainer{
@@ -147,9 +147,12 @@
         var logoContainer = $("<div></div>");
         logoContainer.addClass("logoContainer");
         
-        var queueButton = $("<div></div>");
-        queueButton.addClass("queueButton");
+        var queueContainer = $("<div></div>");
+        queueContainer.addClass("queueContainer");
+
+        var queueButton = $("<a></a>");
         queueButton.text('Queue Up');
+        queueButton.attr("a", 'javascript:void(0);');
         queueButton.click( QueueUp(episodeHash) );
         
         var podcastContainer = $("<div></div>");
@@ -168,9 +171,10 @@
         var clearer    = $("<div></div>");
         clearer.addClass("clearfix");
         
+        queueContainer.append(queueButton);
         logoContainer.append(image);
         podcastContainer.append(logoContainer);
-        podcastContainer.append(queueButton);
+        podcastContainer.append(queueContainer);
         podcastContainer.append(title);
         podcastContainer.append(summary);
         podcastContainer.append(clearer);
