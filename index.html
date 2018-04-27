@@ -140,16 +140,22 @@
           </div>
         */
         
+        //TODO this should be more unique once the api is grabbing more info from the episode
+        var out = sjcl.hash.sha256.hash(value['Feed']);
+        var episodeHash = sjcl.codec.hex.fromBits(out);
+        
         var logoContainer = $("<div></div>");
         logoContainer.addClass("logoContainer");
         
         var queueButton = $("<div></div>");
         queueButton.addClass("queueButton");
         queueButton.text('Queue Up');
+        queueButton.click( QueueUp(episodeHash) );
         
         var podcastContainer = $("<div></div>");
         podcastContainer.addClass("podcastContainer");
         podcastContainer.attr("data-feed", value['Feed']);
+        podcastContainer.attr("id",episodeHash);
         
         var image      = $("<img />");
         image.attr("src", value['Image']);
@@ -177,6 +183,11 @@
       insideDiv.append(contentDiv);
       outsideDiv.append(insideDiv);
       $("#playlists").append(outsideDiv);
+    }
+    
+    function QueueUp(nameHash){
+      var episode = $('#'+nameHash).detach();
+      episode.appendTo("currentQueue");
     }
     
     function StartFetchingPodcastContent(){
@@ -297,6 +308,7 @@
       <div class="col-12 col-md-4">
         <div class="playlist">
           <h2>Playlist</h2>
+          <div id="currentQueue"></div>
         </div>
       </div>
     </div>
