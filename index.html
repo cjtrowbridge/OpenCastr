@@ -63,7 +63,7 @@
       var nameHash = sjcl.codec.hex.fromBits(out);
       
       BuildCategoryAddNavButton(name,nameHash);
-      BuildCategoryAddPlaylistBody(name,nameHash);
+      BuildCategoryAddPlaylistBody(name,nameHash,playlist);
       $("#"+nameHash).tab();
 
     }
@@ -80,7 +80,7 @@
       $("#playlistsNav").append(li);
     }
     
-    function BuildCategoryAddPlaylistBody(name,nameHash){
+    function BuildCategoryAddPlaylistBody(name,nameHash,playlist){
       /*
           <div role="tabpanel" class="tab-pane fade in show active" id="news">
             <div class="playlistContainer">
@@ -101,6 +101,10 @@
       insideDiv.addClass("playlistWrapper");
       
       title.text(name);
+      
+      $.each(playlist, function(key,value) {
+        console.log(key+" "+value);
+      });
       
       insideDiv.append(title);
       insideDiv.append(contentDiv);
